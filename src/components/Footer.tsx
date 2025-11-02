@@ -1,7 +1,11 @@
-import { Sprout, Github, FileText } from "lucide-react";
+import { useState } from "react";
+import { Sprout, Github, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-muted/50 border-t border-border mt-20">
       <div className="container mx-auto px-6 py-12">
@@ -10,7 +14,7 @@ export const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Sprout className="h-6 w-6 text-primary" />
-              <span className="font-bold text-lg">AgriTech AI</span>
+              <span className="font-bold text-lg">AgriNexa</span>
             </div>
             <p className="text-muted-foreground text-sm">
               Empowering agriculture with artificial intelligence for sustainable farming and improved crop health.
@@ -32,35 +36,25 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-smooth">
-                  Yield Forecasting
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-smooth">
-                  Real-time Monitoring
-                </a>
+                <button onClick={() => navigate('/dashboard')} className="hover:text-primary transition-smooth">
+                  Dashboard
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Account */}
           <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
+            <h3 className="font-semibold mb-4">Account</h3>
             <div className="space-y-3">
+              <Button variant="outline" size="sm" className="w-full justify-start" onClick={() => navigate('/auth')}>
+                <LogIn className="mr-2 h-4 w-4" />
+                Login / Sign Up
+              </Button>
               <Button variant="outline" size="sm" className="w-full justify-start" asChild>
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   View on GitHub
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" className="w-full justify-start" asChild>
-                <a href="#setup" onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('setup')?.scrollIntoView({ behavior: 'smooth' });
-                }}>
-                  <FileText className="mr-2 h-4 w-4" />
-                  Setup Instructions
                 </a>
               </Button>
             </div>
@@ -68,17 +62,9 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© 2025 AgriTech AI. Built with React, TypeScript, and Machine Learning.</p>
+          <p>© 2025 AgriNexa. All rights reserved.</p>
           <p className="mt-2">
-            Data sourced from{" "}
-            <a 
-              href="https://www.kaggle.com/code/sulaniishara/plant-health-prediction-with-ml" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Kaggle Plant Health Dataset
-            </a>
+            Powered by AI and Machine Learning for sustainable agriculture
           </p>
         </div>
       </div>

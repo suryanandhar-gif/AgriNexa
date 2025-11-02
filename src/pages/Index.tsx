@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import { PredictionForm } from "@/components/PredictionForm";
 import { PredictionResults } from "@/components/PredictionResults";
 import { DiseaseDetection } from "@/components/DiseaseDetection";
-import { SetupInstructions } from "@/components/SetupInstructions";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -15,7 +14,6 @@ const Index = () => {
       <PredictionForm onPredict={setPredictionData} />
       <PredictionResults data={predictionData} />
       <DiseaseDetection />
-      <SetupInstructions />
       <Footer />
     </div>
   );
