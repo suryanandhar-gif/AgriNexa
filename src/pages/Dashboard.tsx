@@ -32,40 +32,30 @@ const Dashboard = () => {
       <Header />
       <div className="flex-1 container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold mb-2">
             {t("welcome")}
           </h1>
           <p className="text-muted-foreground">{t("dashboardTitle")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="shadow-hover">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Activity className="h-5 w-5 text-primary" />
-                {t("quickActions")}
+                <Leaf className="h-5 w-5 text-primary" />
+                AI-Powered Crop Prediction
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Get accurate yield predictions using advanced machine learning algorithms. Our AI analyzes soil conditions, weather patterns, and historical data to help you make informed decisions.
+              </p>
               <Button 
-                className="w-full justify-start" 
-                variant="outline"
+                className="w-full" 
                 onClick={() => navigate("/predictions")}
               >
                 <BarChart3 className="mr-2 h-4 w-4" />
-                {t("startPrediction")}
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <History className="mr-2 h-4 w-4" />
-                {t("viewHistory")}
-              </Button>
-              <Button 
-                className="w-full justify-start" 
-                variant="outline"
-                onClick={() => navigate("/predictions")}
-              >
-                <Upload className="mr-2 h-4 w-4" />
-                {t("uploadImage")}
+                Start Prediction
               </Button>
             </CardContent>
           </Card>
@@ -73,43 +63,47 @@ const Dashboard = () => {
           <Card className="shadow-hover">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
-                {t("statsOverview")}
+                <AlertTriangle className="h-5 w-5 text-primary" />
+                Disease Detection
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">{t("totalPredictions")}</span>
-                <span className="text-2xl font-bold">24</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">{t("healthyPlants")}</span>
-                <span className="text-2xl font-bold text-green-500">18</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">{t("diseaseDetected")}</span>
-                <span className="text-2xl font-bold text-red-500">6</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">{t("avgYield")}</span>
-                <span className="text-2xl font-bold">4.2t/ha</span>
-              </div>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Upload images of your crops to detect diseases early. Our AI model can identify various plant diseases and provide recommendations for treatment.
+              </p>
+              <Button 
+                className="w-full" 
+                onClick={() => navigate("/predictions")}
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                Upload Image
+              </Button>
             </CardContent>
           </Card>
         </div>
 
         <Card className="shadow-hover">
           <CardHeader>
-            <CardTitle>{t("gettingStarted")}</CardTitle>
-            <CardDescription>Follow these steps to use the platform</CardDescription>
+            <CardTitle>About AgriNexa</CardTitle>
           </CardHeader>
           <CardContent>
-            <ol className="space-y-3 list-decimal list-inside">
-              <li className="text-sm">{t("step1")}</li>
-              <li className="text-sm">{t("step2")}</li>
-              <li className="text-sm">{t("step3")}</li>
-              <li className="text-sm">{t("step4")}</li>
-            </ol>
+            <p className="text-muted-foreground mb-4">
+              AgriNexa is your intelligent farming companion, combining the power of artificial intelligence with agricultural expertise. Our platform helps farmers make data-driven decisions to improve crop yields, detect diseases early, and optimize farming practices.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 mt-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-1">AI</div>
+                <p className="text-sm text-muted-foreground">Powered Analytics</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-1">24/7</div>
+                <p className="text-sm text-muted-foreground">Support Available</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-1">Fast</div>
+                <p className="text-sm text-muted-foreground">Real-time Results</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
