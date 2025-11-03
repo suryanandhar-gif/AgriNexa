@@ -1,224 +1,119 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { User, Session } from "@supabase/supabase-js";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sprout, LogOut, TrendingUp, Activity, Database, Image } from "lucide-react";
-import { toast } from "sonner";
+import { BarChart3, Leaf, AlertTriangle, TrendingUp, Upload, History, Activity } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        // Redirect unauthenticated users to auth page
-        if (!session?.user) {
-          navigate('/auth');
-        }
-      }
-    );
-
-    // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-      
-      if (!session?.user) {
-        navigate('/auth');
-      }
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
     });
 
-    return () => subscription.unsubscribe();
-  }, [navigate]);
-
-  const handleLogout = async () => {
-    try {
-      await supabase.auth.signOut();
-      toast.success("Logged out successfully");
-      navigate('/');
-    } catch (error) {
-      toast.error("Error logging out");
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
     );
-  }
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sprout className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">AgriNexa Dashboard</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">
-              {user?.email}
-            </span>
-            <Button variant="outline" onClick={handleLogout}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Logout
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-6 py-12">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Welcome to Your Dashboard</h2>
-          <p className="text-muted-foreground">
-            Manage your plant health predictions and disease detection analysis
-          </p>
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header />
+      <div className="flex-1 container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            {t("welcome")}
+          </h1>
+          <p className="text-muted-foreground">{t("dashboardTitle")}</p>
         </div>
 
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="shadow-soft transition-smooth hover:shadow-hover cursor-pointer" onClick={() => navigate('/')}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="shadow-hover">
             <CardHeader>
-              <TrendingUp className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>New Prediction</CardTitle>
-              <CardDescription>
-                Analyze plant health parameters
-              </CardDescription>
+              <CardTitle className="flex items-center gap-2">
+                <Activity className="h-5 w-5 text-primary" />
+                {t("quickActions")}
+              </CardTitle>
             </CardHeader>
-          </Card>
-
-          <Card className="shadow-soft transition-smooth hover:shadow-hover cursor-pointer" onClick={() => navigate('/')}>
-            <CardHeader>
-              <Image className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Disease Detection</CardTitle>
-              <CardDescription>
-                Upload plant images for analysis
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="shadow-soft transition-smooth hover:shadow-hover">
-            <CardHeader>
-              <Activity className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Recent Analysis</CardTitle>
-              <CardDescription>
-                View your prediction history
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="shadow-soft transition-smooth hover:shadow-hover">
-            <CardHeader>
-              <Database className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Data Insights</CardTitle>
-              <CardDescription>
-                Track crop health trends
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-
-        {/* Stats Overview */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="shadow-soft">
-            <CardHeader>
-              <CardTitle className="text-lg">Total Predictions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-primary">0</p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Start making predictions to see statistics
-              </p>
+            <CardContent className="space-y-2">
+              <Button 
+                className="w-full justify-start" 
+                variant="outline"
+                onClick={() => navigate("/predictions")}
+              >
+                <BarChart3 className="mr-2 h-4 w-4" />
+                {t("startPrediction")}
+              </Button>
+              <Button className="w-full justify-start" variant="outline">
+                <History className="mr-2 h-4 w-4" />
+                {t("viewHistory")}
+              </Button>
+              <Button 
+                className="w-full justify-start" 
+                variant="outline"
+                onClick={() => navigate("/predictions")}
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                {t("uploadImage")}
+              </Button>
             </CardContent>
           </Card>
 
-          <Card className="shadow-soft">
+          <Card className="shadow-hover">
             <CardHeader>
-              <CardTitle className="text-lg">Disease Scans</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                {t("statsOverview")}
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-primary">0</p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Upload images for disease detection
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="shadow-soft">
-            <CardHeader>
-              <CardTitle className="text-lg">Health Score</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-4xl font-bold text-primary">--</p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Average health score across all plants
-              </p>
+            <CardContent className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">{t("totalPredictions")}</span>
+                <span className="text-2xl font-bold">24</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">{t("healthyPlants")}</span>
+                <span className="text-2xl font-bold text-green-500">18</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">{t("diseaseDetected")}</span>
+                <span className="text-2xl font-bold text-red-500">6</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">{t("avgYield")}</span>
+                <span className="text-2xl font-bold">4.2t/ha</span>
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Get Started Section */}
-        <Card className="mt-8 shadow-soft">
+        <Card className="shadow-hover">
           <CardHeader>
-            <CardTitle>Getting Started</CardTitle>
-            <CardDescription>
-              Begin your journey with AI-powered agriculture
-            </CardDescription>
+            <CardTitle>{t("gettingStarted")}</CardTitle>
+            <CardDescription>Follow these steps to use the platform</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold">Make Your First Prediction</h3>
-                <p className="text-sm text-muted-foreground">
-                  Enter environmental and soil parameters to predict plant health
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold">Upload Plant Images</h3>
-                <p className="text-sm text-muted-foreground">
-                  Use our AI to detect diseases from leaf images
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold">Track Your Progress</h3>
-                <p className="text-sm text-muted-foreground">
-                  Monitor crop health trends over time
-                </p>
-              </div>
-            </div>
-            <Button onClick={() => navigate('/')} className="mt-4">
-              Go to Home Page
-            </Button>
+          <CardContent>
+            <ol className="space-y-3 list-decimal list-inside">
+              <li className="text-sm">{t("step1")}</li>
+              <li className="text-sm">{t("step2")}</li>
+              <li className="text-sm">{t("step3")}</li>
+              <li className="text-sm">{t("step4")}</li>
+            </ol>
           </CardContent>
         </Card>
-      </main>
+      </div>
+      <Footer />
     </div>
   );
 };
