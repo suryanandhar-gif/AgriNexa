@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Hero } from "@/components/Hero";
-import { PredictionForm } from "@/components/PredictionForm";
-import { PredictionResults } from "@/components/PredictionResults";
-import { DiseaseDetection } from "@/components/DiseaseDetection";
-import { Footer } from "@/components/Footer";
+import PredictionForm from "@/components/PredictionForm";
+import PredictionResults from "@/components/PredictionResults";
+import DiseaseDetection from "@/components/DiseaseDetection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const [predictionData, setPredictionData] = useState(null);

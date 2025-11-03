@@ -1,16 +1,14 @@
-import { useState } from "react";
 import { Sprout, Github, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
-export const Footer = () => {
+const Footer = () => {
   const navigate = useNavigate();
 
   return (
     <footer className="bg-muted/50 border-t border-border mt-20">
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Sprout className="h-6 w-6 text-primary" />
@@ -21,29 +19,27 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-semibold mb-4">Features</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#prediction" className="hover:text-primary transition-smooth">
+                <button onClick={() => navigate('/predictions')} className="hover:text-primary transition-colors">
                   Plant Health Prediction
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#disease-detection" className="hover:text-primary transition-smooth">
+                <button onClick={() => navigate('/predictions')} className="hover:text-primary transition-colors">
                   Disease Detection
-                </a>
+                </button>
               </li>
               <li>
-                <button onClick={() => navigate('/dashboard')} className="hover:text-primary transition-smooth">
+                <button onClick={() => navigate('/dashboard')} className="hover:text-primary transition-colors">
                   Dashboard
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Account */}
           <div>
             <h3 className="font-semibold mb-4">Account</h3>
             <div className="space-y-3">
@@ -71,3 +67,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

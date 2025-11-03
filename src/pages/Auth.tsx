@@ -10,12 +10,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Sprout } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 const emailSchema = z.string().email("Invalid email address");
 const passwordSchema = z.string().min(6, "Password must be at least 6 characters");
 
 const Auth = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(false);
@@ -133,7 +135,9 @@ const Auth = () => {
           <div className="flex justify-center mb-4">
             <Sprout className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="text-3xl">AgriNexa</CardTitle>
+          <CardTitle className="text-3xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            AgriNexa
+          </CardTitle>
           <CardDescription>
             AI-Powered Plant Health & Disease Detection
           </CardDescription>
@@ -141,14 +145,14 @@ const Auth = () => {
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsTrigger value="login">{t("login")}</TabsTrigger>
+              <TabsTrigger value="signup">{t("signup")}</TabsTrigger>
             </TabsList>
             
             <TabsContent value="login">
               <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
+                  <Label htmlFor="login-email">{t("email")}</Label>
                   <Input
                     id="login-email"
                     type="email"
@@ -159,7 +163,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="login-password">Password</Label>
+                  <Label htmlFor="login-password">{t("password")}</Label>
                   <Input
                     id="login-password"
                     type="password"
@@ -177,10 +181,10 @@ const Auth = () => {
                   {loading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Logging in...
+                      {t("loggingIn")}
                     </>
                   ) : (
-                    "Login"
+                    t("login")
                   )}
                 </Button>
               </form>
@@ -189,7 +193,7 @@ const Auth = () => {
             <TabsContent value="signup">
               <form onSubmit={handleSignUp} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
+                  <Label htmlFor="signup-email">{t("email")}</Label>
                   <Input
                     id="signup-email"
                     type="email"
@@ -200,7 +204,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-password">Password</Label>
+                  <Label htmlFor="signup-password">{t("password")}</Label>
                   <Input
                     id="signup-password"
                     type="password"
@@ -210,7 +214,7 @@ const Auth = () => {
                     required
                   />
                   <p className="text-xs text-muted-foreground">
-                    Must be at least 6 characters
+                    {t("passwordRequirement")}
                   </p>
                 </div>
                 <Button 
@@ -221,10 +225,10 @@ const Auth = () => {
                   {loading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Creating account...
+                      {t("creatingAccount")}
                     </>
                   ) : (
-                    "Create Account"
+                    t("createAccount")
                   )}
                 </Button>
               </form>
@@ -234,10 +238,10 @@ const Auth = () => {
           <div className="mt-6 text-center">
             <Button
               variant="link"
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/dashboard')}
               className="text-sm text-muted-foreground"
             >
-              ← Back to Home
+              ← {t("backToHome")}
             </Button>
           </div>
         </CardContent>
