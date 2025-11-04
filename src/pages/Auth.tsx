@@ -139,7 +139,7 @@ const Auth = () => {
             AgriNexa
           </CardTitle>
           <CardDescription>
-            AI-Powered Plant Health & Disease Detection
+            {t("authSubtitle")}
           </CardDescription>
         </CardHeader>
         <CardContent>

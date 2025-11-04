@@ -43,19 +43,19 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Leaf className="h-5 w-5 text-primary" />
-                AI-Powered Crop Prediction
+                {t("aiPoweredCropPrediction")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Get accurate yield predictions using advanced machine learning algorithms. Our AI analyzes soil conditions, weather patterns, and historical data to help you make informed decisions.
+                {t("aiPoweredCropDescription")}
               </p>
               <Button 
                 className="w-full" 
                 onClick={() => navigate("/predictions")}
               >
                 <BarChart3 className="mr-2 h-4 w-4" />
-                Start Prediction
+                {t("startPrediction")}
               </Button>
             </CardContent>
           </Card>
@@ -64,19 +64,19 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-primary" />
-                Disease Detection
+                {t("diseaseDetectionTitle")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Upload images of your crops to detect diseases early. Our AI model can identify various plant diseases and provide recommendations for treatment.
+                {t("diseaseDetectionDescription")}
               </p>
               <Button 
                 className="w-full" 
                 onClick={() => navigate("/predictions")}
               >
                 <Upload className="mr-2 h-4 w-4" />
-                Upload Image
+                {t("uploadImage")}
               </Button>
             </CardContent>
           </Card>
@@ -84,24 +84,24 @@ const Dashboard = () => {
 
         <Card className="shadow-hover">
           <CardHeader>
-            <CardTitle>About AgriNexa</CardTitle>
+            <CardTitle>{t("aboutAgriNexa")}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              AgriNexa is your intelligent farming companion, combining the power of artificial intelligence with agricultural expertise. Our platform helps farmers make data-driven decisions to improve crop yields, detect diseases early, and optimize farming practices.
+              {t("aboutDescription")}
             </p>
             <div className="grid md:grid-cols-3 gap-4 mt-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-1">AI</div>
-                <p className="text-sm text-muted-foreground">Powered Analytics</p>
+                <p className="text-sm text-muted-foreground">{t("aiPoweredAnalytics")}</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-1">24/7</div>
-                <p className="text-sm text-muted-foreground">Support Available</p>
+                <p className="text-sm text-muted-foreground">{t("supportAvailable")}</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-1">Fast</div>
-                <p className="text-sm text-muted-foreground">Real-time Results</p>
+                <div className="text-3xl font-bold text-primary mb-1">{t("light") === "வெளிச்சம்" ? "வேகமான" : "Fast"}</div>
+                <p className="text-sm text-muted-foreground">{t("realTimeResults")}</p>
               </div>
             </div>
           </CardContent>

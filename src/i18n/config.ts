@@ -76,6 +76,20 @@ const resources = {
       light: "Light",
       dark: "Dark",
       
+      // Dashboard
+      aiPoweredCropPrediction: "AI-Powered Crop Prediction",
+      aiPoweredCropDescription: "Get accurate yield predictions using advanced machine learning algorithms. Our AI analyzes soil conditions, weather patterns, and historical data to help you make informed decisions.",
+      diseaseDetectionTitle: "Disease Detection",
+      diseaseDetectionDescription: "Upload images of your crops to detect diseases early. Our AI model can identify various plant diseases and provide recommendations for treatment.",
+      aboutAgriNexa: "About AgriNexa",
+      aboutDescription: "AgriNexa is your intelligent farming companion, combining the power of artificial intelligence with agricultural expertise. Our platform helps farmers make data-driven decisions to improve crop yields, detect diseases early, and optimize farming practices.",
+      aiPoweredAnalytics: "Powered Analytics",
+      supportAvailable: "Support Available",
+      realTimeResults: "Real-time Results",
+      
+      // Auth
+      authSubtitle: "AI-Powered Plant Health & Disease Detection",
+      
       // Footer
       features: "Features",
       footerDescription: "Empowering agriculture with artificial intelligence for sustainable farming and improved crop health.",
@@ -155,6 +169,20 @@ const resources = {
       theme: "தீம்",
       light: "வெளிச்சம்",
       dark: "இருள்",
+      
+      // Dashboard
+      aiPoweredCropPrediction: "AI-இயங்கும் பயிர் கணிப்பு",
+      aiPoweredCropDescription: "மேம்பட்ட இயந்திர கற்றல் அல்காரிதங்களைப் பயன்படுத்தி துல்லியமான விளைச்சல் கணிப்புகளைப் பெறுங்கள். எங்கள் AI மண் நிலைகள், வானிலை முறைகள் மற்றும் வரலாற்று தரவுகளை பகுப்பாய்வு செய்து தகவலறிந்த முடிவுகளை எடுக்க உதவுகிறது.",
+      diseaseDetectionTitle: "நோய் கண்டறிதல்",
+      diseaseDetectionDescription: "நோய்களை சீக்கிரம் கண்டறிய உங்கள் பயிர்களின் படங்களைப் பதிவேற்றவும். எங்கள் AI மாதிரி பல்வேறு தாவர நோய்களை அடையாளம் காணவும் சிகிச்சைக்கான பரிந்துரைகளை வழங்கவும் முடியும்.",
+      aboutAgriNexa: "AgriNexa பற்றி",
+      aboutDescription: "AgriNexa உங்கள் புத்திசாலி விவசாய துணைவர், செயற்கை நுண்ணறிவின் சக்தியை விவசாய நிபுணத்துவத்துடன் இணைக்கிறது. எங்கள் தளம் விவசாயிகள் பயிர் விளைச்சலை மேம்படுத்தவும், நோய்களை சீக்கிரம் கண்டறியவும், விவசாய நடைமுறைகளை மேம்படுத்தவும் தரவு-சார்ந்த முடிவுகளை எடுக்க உதவுகிறது.",
+      aiPoweredAnalytics: "இயங்கும் பகுப்பாய்வு",
+      supportAvailable: "ஆதரவு கிடைக்கும்",
+      realTimeResults: "நிகழ்நேர முடிவுகள்",
+      
+      // Auth
+      authSubtitle: "AI-இயங்கும் தாவர ஆரோக்கியம் & நோய் கண்டறிதல்",
       
       // Footer
       features: "அம்சங்கள்",
