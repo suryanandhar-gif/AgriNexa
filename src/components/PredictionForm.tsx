@@ -118,7 +118,7 @@ const PredictionForm = ({ onPredict }: { onPredict: (data: any) => void }) => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="soilMoisture">Soil Moisture (%)</Label>
+              <Label htmlFor="soilMoisture">{t("soilMoisture")}</Label>
               <Input
                 id="soilMoisture"
                 type="number"
@@ -144,7 +144,7 @@ const PredictionForm = ({ onPredict }: { onPredict: (data: any) => void }) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="soilTemp">Soil Temperature (°C)</Label>
+              <Label htmlFor="soilTemp">{t("soilTemperature")}</Label>
               <Input
                 id="soilTemp"
                 type="number"
@@ -170,7 +170,7 @@ const PredictionForm = ({ onPredict }: { onPredict: (data: any) => void }) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="lightIntensity">Light Intensity (lux)</Label>
+              <Label htmlFor="lightIntensity">{t("sunlight")}</Label>
               <Input
                 id="lightIntensity"
                 type="number"
@@ -232,7 +232,7 @@ const PredictionForm = ({ onPredict }: { onPredict: (data: any) => void }) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="chlorophyll">Chlorophyll Content (mg/m²)</Label>
+              <Label htmlFor="chlorophyll">Chlorophyll (mg/m²)</Label>
               <Input
                 id="chlorophyll"
                 type="number"
