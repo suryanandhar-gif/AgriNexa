@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="bg-muted/50 border-t border-border mt-20">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-4 items-start">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Sprout className="h-6 w-6 text-primary" />
