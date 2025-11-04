@@ -75,6 +75,12 @@ const resources = {
       theme: "Theme",
       light: "Light",
       dark: "Dark",
+      
+      // Footer
+      features: "Features",
+      footerDescription: "Empowering agriculture with artificial intelligence for sustainable farming and improved crop health.",
+      allRightsReserved: "All rights reserved.",
+      poweredByAI: "Powered by AI and Machine Learning for sustainable agriculture",
     }
   },
   ta: {
@@ -149,6 +155,12 @@ const resources = {
       theme: "தீம்",
       light: "வெளிச்சம்",
       dark: "இருள்",
+      
+      // Footer
+      features: "அம்சங்கள்",
+      footerDescription: "நிலையான விவசாயம் மற்றும் மேம்படுத்தப்பட்ட பயிர் ஆரோக்கியத்திற்கான செயற்கை நுண்ணறிவுடன் விவசாயத்தை மேம்படுத்துதல்.",
+      allRightsReserved: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+      poweredByAI: "நிலையான விவசாயத்திற்கான AI மற்றும் இயந்திர கற்றல் மூலம் இயக்கப்படுகிறது",
     }
   }
 };
