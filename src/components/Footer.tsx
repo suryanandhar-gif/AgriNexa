@@ -1,6 +1,5 @@
 import { Sprout } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import footerIcon from "@/assets/footer-icon.png";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -42,12 +41,19 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="flex justify-center items-start">
-            <img 
-              src={footerIcon} 
-              alt="AgriNexa Footer Icon" 
-              className="h-32 w-32 object-contain opacity-70"
-            />
+          <div>
+            <h3 className="font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="hover:text-primary transition-colors cursor-pointer">
+                AI Analytics
+              </li>
+              <li className="hover:text-primary transition-colors cursor-pointer">
+                24/7 Support
+              </li>
+              <li className="hover:text-primary transition-colors cursor-pointer">
+                Real-time Results
+              </li>
+            </ul>
           </div>
         </div>
 
